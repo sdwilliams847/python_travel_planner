@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Destination</title>
+    <link href="/static/belt_app/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/belt_app/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h1>Trip Itinerary</h1>
+            <ul class="list-unstyled">
+                <li><a class="navLink" href="/logout">LOGOUT</a></li>
+                <li><a class="navLink" href="/travels">HOME</a></li>
+            </ul>
+        </div>
+        <div>
+            <h1> {{ trip.destination }} </h1>
+            <p>Planned By: {{ trip.planner.name }}</p>
+            <p>Description: {{ trip.plan }}</p>
+            <p>Travel Date From: {{ trip.start_date }}</p>
+            <p>Travel Date To: {{ trip.end_date }}</p><br>
+
+            <h2>Other users joining the trip:</h2>
+                {% for object in comp %}
+                    <p>{{ object.user.name }}</p>
+                {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

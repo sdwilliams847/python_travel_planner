@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Trips</title>
+    <link rel="stylesheet"href="../static/belt_app/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../static/belt_app/css/style.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class='navbar'>
+            <h1>Add a Trip</h1>
+            <ul class="list-unstyled">
+                <li><a class="navLink" href="/logout">LOGOUT</a></li>
+                <li><a class="navLink" href="/travels">HOME</a></li>
+            </ul>
+        </div>
+        <div class='row'>
+            <div class='col-md-8'>
+                <fieldset class="form-group">
+                    <form action="/add_trip" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="destination">Destination: </label>
+                            <input type="text" class="form-control" id="destination" name="destination" placeholder="Destination">
+                        </div>
+                        <div class="form-group">
+                            <label for="plan">Plan: </label>
+                            <input type="text" class="form-control" id="plan"name="plan" placeholder="plan">
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date" class="col-form-label">Travel Date From: </label>
+                            <input class="form-control" type="date" value="2018-01-27"name="start_date">
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date" class="col-form-label">Travel Date To:</label>
+                            <input class="form-control" type="date" value="2018-01-28"name="end_date">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add</button>               
+                    </form>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if "error" in message.tags %}
+                            <ul>
+                                <li class="error">{{message}}</li>
+                            </ul>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="static/belt_app/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/belt_app/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class='navbar'>
+            <h1>Hello, {{ user.name }}</h1>
+            <a class="logout" href="/logout">LOGOUT</a>
+        </div><br>
+        <div class='row'>
+            <div class='col-md-8'>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Travel Start Date</th>
+                        <th scope="col">Travel End Date</th>
+                        <th scope="col">Plan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for element in joined %}
+                    <tr scope="row">
+                        <td><a href="/travels/destination/{{element.trip.id}}">{{ element.trip.destination }}</a></td>
+                        <td>{{ element.trip.start_date }}</td>
+                        <td>{{ element.trip.end_date }}</td>
+                        <td>{{ element.trip.plan }}</td> 
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table><br><br>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-10'>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Travel Start Date</th>
+                            <th scope="col">Travel End Date</th>
+                            <th scope="col">Do You Want to Join?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in trip %}
+                        <tr scope="row">
+                            <td>{{ element.planner.name }}</td>
+                            <td><a href="/travels/destination/{{element.id}}">{{ element.destination }}</a></td>
+                            <td>{{ element.start_date }}</td>
+                            <td>{{ element.end_date }}</td>
+                            <td><a href="/travels/join/{{element.id}}">JOIN</a></td> 
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class='row'>
+            <a href="/travels/add">Add Travel Plan</a>
+        </div>
+    </div>
+</body>
+</html>
